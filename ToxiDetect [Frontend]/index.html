@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toxidetect</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo-left">
+                <img src="logo.png" alt="Toxidetect Logo" class="logo-image">
+            </div>
+            <div class="fsm-badge">FSM Detector</div>
+        </div>
+    </header>
+
+    <main>
+        <h1>FSM-BASED HATE SPEECH<br>DETECTION SYSTEM</h1>
+        
+        <p class="subtitle">
+            Rule-based sequential pattern recognition using deterministic finite<br>
+            state machines. Real-time analysis of social media posts with full<br>
+            transparency and interpretability.
+        </p>
+
+        <div class="input-section">
+            <div class="input-header">
+                <span>Input text</span>
+                <div class="header-right">
+                    <span class="char-counter" id="char-counter">0/280</span>
+                    <button class="icon-btn" id="clear-btn" title="Clear text">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            <line x1="10" y1="11" x2="10" y2="17"></line>
+                            <line x1="14" y1="11" x2="14" y2="17"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="input-content">
+                <textarea class="input-field" id="text-input" placeholder="Enter social media post/text to analyze hate speech." maxlength="280"></textarea>
+            </div>
+        </div>
+
+        <button class="analyze-btn" id="analyze-btn">Analyze</button>
+
+        <div class="output-section" id="output-section" style="display: none;">
+            <div class="output-header">Analysis output</div>
+            <div class="results-grid">
+
+                <div class="result-card">
+                    <div class="card-header">
+                        <span class="card-title">Classification</span>
+                        <span class="info-icon">×</span>
+                    </div>
+                    <div class="classification-badge" id="classification-badge">SAFE</div>
+                    <div class="confidence-section">
+                        <div class="confidence-label">CONFIDENCE</div>
+                        <div class="confidence-bar">
+                            <div class="confidence-fill" id="confidence-fill" style="width: 0%"></div>
+                        </div>
+                        <div class="confidence-value" id="confidence-value">0%</div>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="card-header">
+                        <span class="card-title">State Transitions</span>
+                        <span class="info-icon">→</span>
+                    </div>
+                    <div class="state-badge" id="current-state">S0_Neutral</div>
+                    <div id="state-details">
+                        <div class="state-info">
+                            <span class="label">Final State:</span>
+                            <span class="value" id="final-state">S0_Neutral</span>
+                        </div>
+                        <div class="state-info">
+                            <span class="label">Initial State:</span>
+                            <span class="value" id="initial-state">S0_Neutral</span>
+                        </div>
+                        <div class="state-info">
+                            <span class="label">Tokens Processed:</span>
+                            <span class="value" id="tokens-count">0</span>
+                        </div>
+                        <div class="state-info">
+                            <span class="label">Transitions:</span>
+                            <span class="value" id="transitions-count">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="card-header">
+                        <span class="card-title">Detected Patterns</span>
+                        <span class="info-icon">›</span>
+                    </div>
+                    <div id="patterns-content">
+                        <div class="pattern-message">No toxic patterns detected</div>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="card-header">
+                        <span class="card-title">Analysis Explanation</span>
+                        <span class="info-icon">i</span>
+                    </div>
+                    <div id="explanation-content">
+                        <p class="explanation-text">No toxic patterns were detected in the input text. The content appears to be safe.</p>
+                        <div class="recommended-action">
+                            <div class="action-title">RECOMMENDED ACTION</div>
+                            <div class="action-content">No action required. Content is safe for publication.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 | toxidetect</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
