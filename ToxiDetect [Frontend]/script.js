@@ -135,6 +135,7 @@ const analyzeBtn = document.getElementById('analyze-btn');
 const clearBtn = document.getElementById('clear-btn');
 const outputSection = document.getElementById('output-section');
 const charCounter = document.getElementById('char-counter');
+const scrollIndicator = document.getElementById('scroll-indicator');
 
 function updateCharCounter() {
     const currentLength = textInput.value.length;
@@ -170,9 +171,20 @@ analyzeBtn.addEventListener('click', () => {
     setTimeout(() => {
         const result = fsm.analyze(inputText);
         displayResults(result);
-        outputSection.style.display = 'block';
         
-        outputSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        // Show output section with animation
+        outputSection.classList.add('visible');
+        scrollIndicator.style.display = 'flex';
+        
+        // Smooth scroll to output section after a short delay
+        setTimeout(() => {
+            outputSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // Hide scroll indicator after scrolling
+            setTimeout(() => {
+                scrollIndicator.style.display = 'none';
+            }, 2000);
+        }, 100);
         
         analyzeBtn.innerHTML = originalText;
         analyzeBtn.disabled = false;
@@ -260,7 +272,8 @@ function displayResults(result) {
 
 clearBtn.addEventListener('click', () => {
     textInput.value = '';
-    outputSection.style.display = 'none';
+    outputSection.classList.remove('visible');
+    scrollIndicator.style.display = 'none';
     updateCharCounter();
     textInput.focus();
 });
