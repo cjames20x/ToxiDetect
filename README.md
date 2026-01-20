@@ -2,8 +2,6 @@
 
 A real-time, FSM-based hate speech detection system with transparent pattern recognition and interpretable results.
 
-![ToxiDetect Banner](logo.png)
-
 ## Overview
 
 ToxiDetect is a rule-based hate speech detection system that uses Finite State Machines (FSM) to analyze text content for toxic patterns. Unlike black-box machine learning models, ToxiDetect provides full transparency into its detection logic through state transitions and pattern explanations.
