@@ -1,0 +1,23 @@
+HOW TO RUN?
+
+STEP 1: OPEN THE TERMINAL
+STEP 2: INSTALL THE REQUIREMENTS
+Run this command to download the necessary tools:
+py -m pip install -r backend/requirements.txt
+
+STEP 3: START THE SERVER
+Run this command to turn on the system:
+py -m uvicorn backend.main:app --reload
+Success Message:
+You should see: "Uvicorn running on http://127.0.0.1:8000"
+
+STEP 4: USE THE APP
+1. Keep that black terminal window OPEN.
+2. Go to the "frontend" folder.
+3. Run "index.html".
+
+ERROR: "pip is not recognized"
+FIX: You need to reinstall Python and check the box "Add to PATH" at the bottom of the installer.
+
+ERROR: "Connection Failed"
+FIX: You probably closed the terminal window. The server must remain running for the site to work.
