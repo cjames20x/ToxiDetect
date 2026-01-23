@@ -2,6 +2,11 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import re
+import nltk
+from nltk.stem import PorterStemmer
+
+nltk.download('punkt', quiet=True)
+stemmer = PorterStemmer()
 
 app = FastAPI()
 
