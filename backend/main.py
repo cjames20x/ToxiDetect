@@ -23,9 +23,27 @@ class PostRequest(BaseModel):
 
 # INPUT WORDS (Σ)
 PATTERNS = {
-    "group": ['them', 'those', 'people', 'group', 'us', 'we', 'they'],
-    "slur": ['hate', 'stupid', 'idiot', 'dumb', 'ugly', 'worst', 'terrible', 'awful'],
-    "threat": ['kill', 'die', 'attack', 'destroy', 'burn', 'hurt', 'eliminated']
+    "group": [
+        'them', 'those', 'peopl', 'group', 'us', 'we', 'they', 
+        'our', 'yall', 'everyon', 'communiti', 'women', 'men', 
+        'black', 'white', 'asian', 'jew', 'muslim', 'gay', 'lgbt'
+    ],
+    
+    "slur": [
+        'hate', 'stupid', 'idiot', 'dumb', 'ugli', 'worst', 'terribl', 'aw',
+        'trash', 'pathet', 'loser', 'clown', 'creep', 'nasti', 'gross', 
+        'disgust', 'useless', 'garbag', 'scum', 'filth', 'ignor',
+        'bitch', 'bastard', 'whore', 'slut', 'fag', 'retard', 'nigger', 
+        'cunt', 'dick', 'pussi', 'asshol', 'shit', 'crap', 'racist', 'bigot'
+    ],
+    
+    "threat": [
+        'kill', 'die', 'attack', 'destroi', 'burn', 'hurt', 'elimin', 
+        'fuck', 'beat', 'murder', 'shoot', 'stab', 'slaughter', 'strangl', 
+        'choke', 'hang', 'drown', 'behead', 'lynch', 'execut', 'massacr', 
+        'bomb', 'poison', 'rape', 'assault', 'fight', 'punch', 'kick',
+        'dox', 'swat', 'hunt', 'wipe out', 'end you'
+    ]
 }
 
 # TRANSITION TABLE (δ)
@@ -60,10 +78,17 @@ def preprocess(text: str):
     
     return stemmed_words
 
-def get_token_type(word):
-    if word in PATTERNS["threat"]: return "threat"
-    if word in PATTERNS["slur"]: return "slur"
-    if word in PATTERNS["group"]: return "group"
+def get_token_type(stemmed_word):
+    # Check for exact matches since we are now comparing root-to-root
+    if stemmed_word in PATTERNS["threat"]:
+        return "threat"
+            
+    if stemmed_word in PATTERNS["slur"]:
+        return "slur"
+            
+    if stemmed_word in PATTERNS["group"]:
+        return "group"
+        
     return "neutral"
 
 @app.post("/analyze")
