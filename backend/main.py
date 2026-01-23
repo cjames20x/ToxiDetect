@@ -16,7 +16,7 @@ app.add_middleware(
 class PostRequest(BaseModel):
     text: str
 
-# INPUT SYMBOLS (Σ)
+# INPUT WORDS (Σ)
 PATTERNS = {
     "group": ['them', 'those', 'people', 'group', 'us', 'we', 'they'],
     "slur": ['hate', 'stupid', 'idiot', 'dumb', 'ugly', 'worst', 'terrible', 'awful'],
@@ -50,8 +50,10 @@ STATE_NAMES = {
 def preprocess(text: str):
     text = text.lower()
     text = text.replace("0", "o").replace("1", "i").replace("3", "e").replace("4", "a").replace("@", "a")
+    raw_words = re.findall(r'\w+', text)
+    stemmed_words = [stemmer.stem(word) for word in raw_words]
     
-    return re.findall(r'\w+', text)
+    return stemmed_words
 
 def get_token_type(word):
     if word in PATTERNS["threat"]: return "threat"
